@@ -9,10 +9,11 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 /**
- * 华为软件精英挑战赛 language java team Twomonk
+ * 华为软件精英挑战赛
  * 
- * @author LD
- *
+ * @language java
+ * @team Twomonk
+ * @author LD/LS
  */
 public class Game {
 
