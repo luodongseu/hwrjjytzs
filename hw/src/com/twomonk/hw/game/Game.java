@@ -1,37 +1,117 @@
 package com.twomonk.hw.game;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.Socket;
+import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 /**
- * 华为软件精英挑战赛
+ * ��Ϊ�����Ӣ��ս??
  * 
  * @language java
  * @team Twomonk
  * @author LD/LS
  */
-public class Game {
+public class game {
+	/**
+	 * statement some static final vars
+	 */
+	/** player ->register state **/
+	private static final int S_REGISTER = 0;
+	/** server ->seat info **/
+	private static final int S_SEAT = 1;
+	/** server ->blind info **/
+	private static final int S_BLIND = 2;
+	/** server ->my 2 hold cards info **/
+	private static final int S_HOLDCARDS = 3;
+	/** player ->do action before flop **/
+	private static final int S_INQUIRE_A_HOLD = 4;
+	/** server ->3 flop cards **/
+	private static final int S_FLOPCARDS = 5;
+	/** player ->do action after flop **/
+	private static final int S_INQUIRE_A_FLOP = 6;
+	/** server ->1 turn card **/
+	private static final int S_TRUNCARD = 7;
+	/** player ->do action after turn **/
+	private static final int S_INQUIRE_A_TRUN = 8;
+	/** server ->1 river card **/
+	private static final int S_RIVERCARD = 9;
+	/** player ->do action after river **/
+	private static final int S_INQUIRE_A_RIVER = 10;
+	/** server ->show all players cards **/
+	private static final int S_SHOWDOWN = 11;
+	/** server ->show all player' won **/
+	private static final int S_SHOWPOT = 12;
+	/** server ->say game over **/
+	private static final int S_GAMEOVER = 13;
+
+	/** current state replaced by those static vars **/
+	private int current = -1;
+
+	/** gloabl Socket impl **/
+	private Socket socket;
+
+	/** gloabl PrintWriter impl **/
+	private PrintWriter out;
+
+	static final String eol = " \n";
 
 	/**
-	 * 牌 实体
-	 * 
-	 * @author LD
+	 * init Socket only one
 	 */
+	void init(String[] args) {
+		try {
+			current = -1;
+			if (socket == null || socket.isClosed()) {
+				socket = new Socket(InetAddress.getByName(args[0]),
+						Integer.parseInt(args[1]),
+						InetAddress.getByName(args[2]),
+						Integer.parseInt(args[3]));
+
+				out = new PrintWriter(socket.getOutputStream(), true);
+				/**
+				 * 1.register
+				 */
+				doRegister(args[4], "twomonk");
+				/**
+				 * start to play thread
+				 */
+				new ClientThread().start();
+			} else {
+				return;
+			}
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * close Socket and PrintWriter
+	 */
+	void closeSocket() {
+		try {
+			socket.close();
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 	class Card {
 		String color;
 		String point;
 
 		/**
-		 * 构造函数
-		 * 
 		 * @param reg
 		 */
-		Card(String reg) {// 将color point转化为Card类
+		Card(String reg) {
 			String str[] = reg.split(" ");
 			if (str.equals("") || str == null || str.length < 2)
 				return;
@@ -40,49 +120,47 @@ public class Game {
 		}
 	}
 
-	static String eol = " eol ";
-
 	/**
-	 * reg-msg (1) 玩家注册
+	 * reg-msg
 	 * 
 	 * @param pid
 	 * @param pname
 	 */
-	void register(String pid, String pname) {
+	void doRegister(String pid, String pname) {
+		current = S_REGISTER;
 		String msg = "reg: ";
 		msg += pid;
 		msg += " ";
 		msg += pname;
-		// 发送注册消息
-		sendMessage(msg);
+		msg += eol;
+		out.println(msg);
 	}
 
 	/**
-	 * seat-info-msg (2)获得座次消息
+	 * seat-info-msg
 	 * 
 	 * seat/ eol button: pid jetton money eol small blind: pid jetton money eol
 	 * (big blind: pid jetton money eol)0-1 (pid jetton money eol)0-5 /seat eol
 	 */
 	void getSeatInfo(String info) {
-		// 获得消息
 		info.replaceAll("/seat eol | eol /seat eol", "");
 		String[] infos = info.split(eol);
 		if (infos.length >= 2) {
-			// 获取庄家
+
 			if (infos[0].contains("button")) {
 				String button = infos[1].split(": ")[1];
 			}
-			// 获取小盲注
+
 			if (infos[1].contains("small blind")) {
 				String sblind = infos[2].split(": ")[1];
 
 			}
-			// 如果有大盲注
+
 			if (infos.length >= 3) {
 				String bblind = infos[2].split(": ")[1];
 
 			}
-			// 如果有其他
+
 			if (infos.length >= 4) {
 				String other[][] = new String[infos.length - 3][3];
 				for (int i = 3; i < infos.length; i++) {
@@ -93,15 +171,16 @@ public class Game {
 	}
 
 	/**
-	 * game-over-msg (3)游戏结束
+	 * game-over-msg
 	 * 
 	 */
 	void gameOver() {
-		// reset();
+		closeSocket();
+		current = S_GAMEOVER;
 	}
 
 	/**
-	 * blind-msg (4)盲注信息
+	 * blind-msg
 	 * 
 	 * blind/ eol (pid: bet eol)1-2 /blind eol
 	 * 
@@ -110,16 +189,16 @@ public class Game {
 	void getBlind(String info) {
 		info = info.replaceAll("/blind eol | eol blind/ eol ", "");
 		String infos[] = info.split(eol);
-		if (infos.length == 1) {// 只有小盲注
+		if (infos.length == 1) {
 			String sblind = infos[0].split(": ")[1];
-		} else if (infos.length == 2) {// 大小盲注都有
+		} else if (infos.length == 2) {
 			String b1 = infos[0].split(": ")[1];
 			String b2 = infos[1].split(": ")[1];
 		}
 	}
 
 	/**
-	 * inquire-msg (5)询问消息
+	 * inquire-msg
 	 * 
 	 * inquire/ eol (pid jetton money bet blind | check | call | raise | all_in
 	 * | fold eol)1-8 total pot: num eol /inquire eol
@@ -131,19 +210,20 @@ public class Game {
 	}
 
 	/**
-	 * action-msg (6)行动消息
+	 * action-msg
 	 * 
 	 * check | call | raise num | all_in | fold eol
+	 * 
 	 */
 	void doAction() {
 		String msg = "";
 		msg = "check";
-		// 发送行动消息
-		this.sendMessage(msg);
+		msg += eol;
+		out.println(msg);
 	}
 
 	/**
-	 * flop-msg (7)公共牌消息
+	 * flop-msg
 	 * 
 	 * flop/ eol color point eol color point eol color point eol /flop eol
 	 * 
@@ -153,13 +233,13 @@ public class Game {
 		info = info.replaceAll("flop/ eol | eol /flop eol	", "");
 		String cds[] = info.split(eol);
 		Card cards[] = new Card[3];
-		for (int i = 0; i < 3; i++) {// 三张牌
+		for (int i = 0; i < 3; i++) {
 			cards[i] = new Card(cds[i]);
 		}
 	}
 
 	/**
-	 * turn-msg (8)转牌消息
+	 * turn-msg
 	 * 
 	 * turn/ eol color point eol /turn eol
 	 * 
@@ -171,7 +251,7 @@ public class Game {
 	}
 
 	/**
-	 * river-msg (9)河牌消息
+	 * river-msg
 	 * 
 	 * river/ eol color point eol /river eol
 	 * 
@@ -183,7 +263,7 @@ public class Game {
 	}
 
 	/**
-	 * showdown-msg (10)摊牌
+	 * showdown-msg
 	 * 
 	 * showdown/ eol common/ eol color point eol /common eol rank: pid color
 	 * point color point nut_hand eol /showdown eol
@@ -193,18 +273,18 @@ public class Game {
 	void showCards(String info) {
 		info = info.replaceAll("showdown/ eol | eol /showdown eol", "");
 		info = info.replaceAll("common/ eol |/common eol ", "");
-		String infos[] = info.split(eol);// 剩下的包括5张公共牌和所有玩家排名
-		Card cCards[] = new Card[5];// 保存5张公牌
-		for (int i = 0; i < 5; i++) {// 前面5张是公共牌
+		String infos[] = info.split(eol);
+		Card cCards[] = new Card[5];
+		for (int i = 0; i < 5; i++) {
 			cCards[i] = new Card(infos[i]);
 		}
-		for (int j = 5; j < infos.length; j++) {// 剩下的是排名
-			/** 这里处理排名信息 **/
+		for (int j = 5; j < infos.length; j++) {
+
 		}
 	}
 
 	/**
-	 * pot-win-msg (11)彩池分配
+	 * pot-win-msg
 	 * 
 	 * pot-win/ eol (pid: num eol)0-8 /pot-win eol
 	 * 
@@ -212,7 +292,7 @@ public class Game {
 	 */
 	void getPotWin(String info) {
 		info = info.replaceAll("pot-win/ eol | eol /pot-win eol", "");
-		String infos[] = info.split(eol);// 彩池数组
+		String infos[] = info.split(eol);
 		if (infos == null || infos.equals("")) {
 			return;
 		} else {
@@ -223,7 +303,7 @@ public class Game {
 	}
 
 	/**
-	 * hold-cards-msg (5)获得手牌
+	 * hold-cards-msg
 	 * 
 	 * hold/ eol color point eol color point eol /hold eol
 	 * 
@@ -233,82 +313,118 @@ public class Game {
 		info = info.replaceAll("hold/ eol | eol /hold eol", "");
 		String cards[] = info.split(eol);
 		Card hCards[] = new Card[2];
-		hCards[0] = new Card(cards[0]);// 手牌1
-		hCards[1] = new Card(cards[1]);// 手牌2
+		hCards[0] = new Card(cards[0]);
+		hCards[1] = new Card(cards[1]);
 	}
 
 	/**
-	 * 发送数据到服务器
-	 * 
-	 * @param msg
-	 */
-	void sendMessage(String msg) {
-
-	}
-
-	/**
-	 * 从服务器获取数据
-	 * 
-	 * @return
-	 */
-	String getMessage() {
-		return "";
-	}
-
-	/**
-	 * 测试Socket获取数据&发送数据
-	 * 
-	 * @throws UnknownHostException
-	 * @throws IOException
-	 */
-	void test() throws UnknownHostException, IOException {
-		Socket socket = new Socket("127.0.0.1", 1234);
-		OutputStream out = socket.getOutputStream();
-		DataOutputStream dataOut = new DataOutputStream(out);
-		dataOut.writeUTF("hello!");
-
-		InputStream in = socket.getInputStream();
-		DataInputStream dataIn = new DataInputStream(in);
-		String s = dataIn.readUTF();
-		System.out.println(s);
-
-		in.close();
-		out.close();
-		socket.close();
-	}
-
-	/**
-	 * 入口函数main
+	 * ��ں���main 1. player向server注册自己的id和name（reg-msg）
+	 * 2.while（还有2个及以上玩家并且未超过最大局数） ｛ a) 发布座次信息：seat-info-msg（轮流坐庄）
+	 * b)强制押盲注：blind-msg c) 为每位牌手发两张底牌：hold-cards-msg d)
+	 * 翻牌前喊注：inquire-msg/action-msg（多次） e) 发出三张公共牌：flop-msg
+	 * f)翻牌圈喊注：inquire-msg/action-msg（多次） g) 发出一张公共牌（转牌）：turn-msg h)
+	 * 转牌圈喊注：inquire-msg/action-msg（多次） i) 发出一张公共牌（河牌）：river-msg
+	 * j)河牌圈喊注：inquire-msg/action-msg（多次） k) 若有两家以上未盖牌则摊牌比大小：showdown-msg
+	 * l)公布彩池分配结果：pot-win-msg ｝ 3. 本场比赛结束（game-over-msg）
 	 * 
 	 * @param args
-	 *            [5] args[0]牌桌程序IP args[1]牌桌程序端口好 args[2]牌手程序绑定的IP
-	 *            args[3]牌手程序绑定的端口号 args[4]牌手的ID
+	 *            [5] args[0]��������IP args[1]��������˿�??args[2]���ֳ���󶨵�IP
+	 *            args[3]���ֳ���󶨵Ķ˿ں� args[4]���ֵ�ID
 	 */
-	public static void main(String[] args) {
-		// if (args.equals("") || args == null || args.length < 5) {// 参数错误则退出
-		// System.out.println("args error!");
-		// Game game = new Game();
-		// try {
-		// game.test();
-		// } catch (UnknownHostException e) {
-		// e.printStackTrace();
-		// } catch (IOException e) {
-		// e.printStackTrace();
-		// }
-		// } else {// 参数正确则进入游戏
-		// // //////////////////////////游戏代码区/////////////////////////////
-		// Game game = new Game();
-		// try {
-		// game.test();
-		// } catch (UnknownHostException e) {
-		// e.printStackTrace();
-		// } catch (IOException e) {
-		// e.printStackTrace();
-		// }
-		// }
-		String msg = "seat/ eol button: pid jetton money eol small blind: pid jetton money eol (big blind: pid jetton money eol)0-1 (pid jetton money eol)0-5 /seat eol";
-		msg = msg.replaceAll("seat/ eol | /seat eol", "");
-		System.out.println(msg);
+	public static void main(String[] args) throws UnknownHostException,
+			IOException {
+		if (args == null || args.equals("")) {
+			return;
+		}
 
+		/**
+		 * init
+		 */
+		game gam = new game();
+		gam.init(args);
+	}
+
+	/**
+	 * whole game play
+	 * 
+	 * @author LD
+	 *
+	 */
+	class ClientThread extends Thread {
+		public void run() {
+			try {
+				BufferedReader in = new BufferedReader(new InputStreamReader(
+						socket.getInputStream()));
+				while (true) {
+					String info = in.readLine().trim();
+					System.out.println(info);
+					if (info.startsWith("seat/")) {
+						/** Seat info **/
+						current = S_SEAT;
+						getSeatInfo(info);
+					} else if (info.startsWith("blind/")) {
+						/** Blind info **/
+						current = S_BLIND;
+						getBlind(info);
+					} else if (info.startsWith("hold/")) {
+						/** My HandCards info **/
+						current = S_HOLDCARDS;
+						getHandCards(info);
+					} else if (info.startsWith("inquire/")) {
+						/** Server Inquire my action info **/
+						switch (current) {
+						case S_FLOPCARDS:
+							current = S_INQUIRE_A_FLOP;
+							/**strategy 1**/
+							doAction();
+							break;
+						case S_HOLDCARDS:
+							current = S_INQUIRE_A_HOLD;
+							/**strategy 2**/
+							doAction();
+							break;
+						case S_TRUNCARD:
+							current = S_INQUIRE_A_TRUN;
+							/**strategy 3**/
+							doAction();
+							break;
+						case S_RIVERCARD:
+							current = S_INQUIRE_A_RIVER;
+							/**strategy 4**/
+							doAction();
+							break;
+						default:
+							break;
+						}
+					} else if (info.startsWith("flop/")) {
+						/** 3 Common cards info **/
+						current = S_FLOPCARDS;
+						getFlop(info);
+					} else if (info.startsWith("turn/")) {
+						/** 1 Turn card info **/
+						current = S_TRUNCARD;
+						getTurn(info);
+					} else if (info.startsWith("river/")) {
+						/** 1 River card info **/
+						current = S_RIVERCARD;
+						getRiver(info);
+					} else if (info.startsWith("showdown/")) {
+						/** Show all players' cards info **/
+						current = S_SHOWDOWN;
+						showCards(info);
+					} else if (info.startsWith("pot-win/")) {
+						/** Show pot giving info **/
+						current = S_SHOWPOT;
+						getPotWin(info);
+					} else if (info.startsWith("game-over")) {
+						/** Game Over reset game **/
+						current = S_GAMEOVER;
+						gameOver();
+					}
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }
