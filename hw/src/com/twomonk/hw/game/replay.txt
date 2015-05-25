@@ -1,0 +1,1486 @@
+
+-0>
+game start(id=replay)
+-1>
+reg: player id=1111 name=twomonk money=10000
+-2>
+reg: player id=2222 name=twomonk money=10000
+-3>
+reg: player id=3333 name=twomonk money=10000
+-4>
+reg: player id=4444 name=twomonk money=10000
+-5>
+reg: player id=5555 name=twomonk money=10000
+-6>
+reg: player id=6666 name=twomonk money=10000
+-7>
+reg: player id=7777 name=twomonk money=10000
+-8>
+reg: player id=8888 name=twomonk money=10000
+-9>
+game(id=replay) new hand 1 start...
+-10>
+seat/ 
+button: 5555 2000 8000 
+small blind: 8888 2000 8000 
+big blind: 2222 2000 8000 
+7777 2000 8000 
+3333 2000 8000 
+1111 2000 8000 
+4444 2000 8000 
+6666 2000 8000 
+/seat 
+
+-11>
+score of 8888: 1 8000 2000 0
+-12>
+score of 2222: 1 8000 2000 0
+-13>
+score of 7777: 1 8000 2000 0
+-14>
+score of 3333: 1 8000 2000 0
+-15>
+score of 1111: 1 8000 2000 0
+-16>
+score of 4444: 1 8000 2000 0
+-17>
+score of 6666: 1 8000 2000 0
+-18>
+score of 5555: 1 8000 2000 0
+-19>
+player 8888 action blind
+-20>
+player 8888 bet 50 rest 1950
+-21>
+pot num 50 current bet 50 least raise 100
+-22>
+player 2222 action blind
+-23>
+player 2222 bet 100 rest 1900
+-24>
+pot num 150 current bet 100 least raise 100
+-25>
+player 8888:hold/ 
+SPADES A 
+CLUBS 8 
+/hold 
+
+-26>
+player 2222:hold/ 
+DIAMONDS 9 
+DIAMONDS A 
+/hold 
+
+-27>
+player 7777:hold/ 
+HEARTS 10 
+CLUBS J 
+/hold 
+
+-28>
+player 3333:hold/ 
+DIAMONDS K 
+HEARTS 3 
+/hold 
+
+-29>
+player 1111:hold/ 
+HEARTS 5 
+SPADES 3 
+/hold 
+
+-30>
+player 4444:hold/ 
+CLUBS 3 
+SPADES 4 
+/hold 
+
+-31>
+player 6666:hold/ 
+SPADES 9 
+CLUBS A 
+/hold 
+
+-32>
+player 5555:hold/ 
+SPADES Q 
+CLUBS 4 
+/hold 
+
+-33>
+player 7777 action fold
+-34>
+player 7777 time out
+-35>
+player 3333 action fold
+-36>
+player 3333 time out
+-37>
+player 1111 action all_in
+-38>
+player 1111 bet 2000 rest 0
+-39>
+pot num 2150 current bet 2000 least raise 1900
+-40>
+player 4444 action all_in
+-41>
+player 4444 bet 2000 rest 0
+-42>
+pot num 4150 current bet 2000 least raise 1900
+-43>
+player 6666 action fold
+-44>
+player 6666 time out
+-45>
+player 5555 action fold
+-46>
+player 5555 time out
+-47>
+player 8888 action fold
+-48>
+player 8888 time out
+-49>
+player 2222 action fold
+-50>
+player 2222 time out
+-51>
+flop/ 
+SPADES J 
+CLUBS 10 
+HEARTS 9 
+/flop 
+
+-52>
+turn/ 
+DIAMONDS Q 
+/turn 
+
+-53>
+river/ 
+CLUBS 5 
+/river 
+
+-54>
+player 1111 show down: ONE_PAIR [HEARTS 5] [SPADES 3]
+-55>
+player 4444 show down: HIGH_CARD [CLUBS 3] [SPADES 4]
+-56>
+player 1111 win pot: 4150
+-57>
+score of 8888: 1 8000 1950 0
+-58>
+score of 2222: 1 8000 1900 0
+-59>
+score of 7777: 1 8000 2000 0
+-60>
+score of 3333: 1 8000 2000 0
+-61>
+score of 1111: 1 8000 4150 0
+-62>
+score of 4444: 1 8000 0 0
+-63>
+score of 6666: 1 8000 2000 0
+-64>
+score of 5555: 1 8000 2000 0
+-65>
+game(id=replay) new hand 2 start...
+-66>
+seat/ 
+button: 8888 1950 8000 
+small blind: 2222 1900 8000 
+big blind: 7777 2000 8000 
+3333 2000 8000 
+1111 4150 8000 
+4444 2000 6000 
+6666 2000 8000 
+5555 2000 8000 
+/seat 
+
+-67>
+score of 2222: 2 8000 1900 0
+-68>
+score of 7777: 2 8000 2000 0
+-69>
+score of 3333: 2 8000 2000 0
+-70>
+score of 1111: 2 8000 4150 0
+-71>
+score of 4444: 2 6000 2000 0
+-72>
+score of 6666: 2 8000 2000 0
+-73>
+score of 5555: 2 8000 2000 0
+-74>
+score of 8888: 2 8000 1950 0
+-75>
+player 2222 action blind
+-76>
+player 2222 bet 50 rest 1850
+-77>
+pot num 50 current bet 50 least raise 100
+-78>
+player 7777 action blind
+-79>
+player 7777 bet 100 rest 1900
+-80>
+pot num 150 current bet 100 least raise 100
+-81>
+player 2222:hold/ 
+CLUBS 7 
+SPADES 9 
+/hold 
+
+-82>
+player 7777:hold/ 
+DIAMONDS A 
+CLUBS A 
+/hold 
+
+-83>
+player 3333:hold/ 
+HEARTS 6 
+HEARTS Q 
+/hold 
+
+-84>
+player 1111:hold/ 
+SPADES 10 
+SPADES 4 
+/hold 
+
+-85>
+player 4444:hold/ 
+SPADES 6 
+DIAMONDS 2 
+/hold 
+
+-86>
+player 6666:hold/ 
+SPADES Q 
+HEARTS 4 
+/hold 
+
+-87>
+player 5555:hold/ 
+DIAMONDS 9 
+DIAMONDS 7 
+/hold 
+
+-88>
+player 8888:hold/ 
+CLUBS 4 
+HEARTS 7 
+/hold 
+
+-89>
+player 3333 action fold
+-90>
+player 3333 time out
+-91>
+player 1111 action fold
+-92>
+player 1111 time out
+-93>
+player 4444 action fold
+-94>
+player 4444 time out
+-95>
+player 6666 action fold
+-96>
+player 6666 time out
+-97>
+player 5555 action fold
+-98>
+player 5555 time out
+-99>
+player 8888 action fold
+-100>
+player 8888 time out
+-101>
+player 2222 action fold
+-102>
+player 2222 time out
+-103>
+player 7777 action fold
+-104>
+player 7777 time out
+-105>
+score of 2222: 2 8000 1850 0
+-106>
+score of 7777: 2 8000 1900 0
+-107>
+score of 3333: 2 8000 2000 0
+-108>
+score of 1111: 2 8000 4150 0
+-109>
+score of 4444: 2 6000 2000 0
+-110>
+score of 6666: 2 8000 2000 0
+-111>
+score of 5555: 2 8000 2000 0
+-112>
+score of 8888: 2 8000 1950 0
+-113>
+game(id=replay) new hand 3 start...
+-114>
+seat/ 
+button: 2222 1850 8000 
+small blind: 7777 1900 8000 
+big blind: 3333 2000 8000 
+1111 4150 8000 
+4444 2000 6000 
+6666 2000 8000 
+5555 2000 8000 
+8888 1950 8000 
+/seat 
+
+-115>
+score of 7777: 3 8000 1900 0
+-116>
+score of 3333: 3 8000 2000 0
+-117>
+score of 1111: 3 8000 4150 0
+-118>
+score of 4444: 3 6000 2000 0
+-119>
+score of 6666: 3 8000 2000 0
+-120>
+score of 5555: 3 8000 2000 0
+-121>
+score of 8888: 3 8000 1950 0
+-122>
+score of 2222: 3 8000 1850 0
+-123>
+player 7777 action blind
+-124>
+player 7777 bet 50 rest 1850
+-125>
+pot num 50 current bet 50 least raise 100
+-126>
+player 3333 action blind
+-127>
+player 3333 bet 100 rest 1900
+-128>
+pot num 150 current bet 100 least raise 100
+-129>
+player 7777:hold/ 
+DIAMONDS 3 
+SPADES A 
+/hold 
+
+-130>
+player 3333:hold/ 
+HEARTS A 
+HEARTS 5 
+/hold 
+
+-131>
+player 1111:hold/ 
+DIAMONDS 5 
+HEARTS 10 
+/hold 
+
+-132>
+player 4444:hold/ 
+DIAMONDS Q 
+DIAMONDS 7 
+/hold 
+
+-133>
+player 6666:hold/ 
+SPADES 10 
+HEARTS 2 
+/hold 
+
+-134>
+player 5555:hold/ 
+HEARTS 8 
+HEARTS J 
+/hold 
+
+-135>
+player 8888:hold/ 
+DIAMONDS 4 
+CLUBS 3 
+/hold 
+
+-136>
+player 2222:hold/ 
+CLUBS 6 
+CLUBS 8 
+/hold 
+
+-137>
+player 1111 action fold
+-138>
+player 1111 time out
+-139>
+player 4444 action fold
+-140>
+player 4444 time out
+-141>
+player 6666 action fold
+-142>
+player 6666 time out
+-143>
+player 5555 action fold
+-144>
+player 5555 time out
+-145>
+player 8888 action fold
+-146>
+player 8888 time out
+-147>
+player 2222 action fold
+-148>
+player 2222 time out
+-149>
+player 7777 action fold
+-150>
+player 7777 time out
+-151>
+player 3333 action fold
+-152>
+player 3333 time out
+-153>
+score of 7777: 3 8000 1850 0
+-154>
+score of 3333: 3 8000 1900 0
+-155>
+score of 1111: 3 8000 4150 0
+-156>
+score of 4444: 3 6000 2000 0
+-157>
+score of 6666: 3 8000 2000 0
+-158>
+score of 5555: 3 8000 2000 0
+-159>
+score of 8888: 3 8000 1950 0
+-160>
+score of 2222: 3 8000 1850 0
+-161>
+game(id=replay) new hand 4 start...
+-162>
+seat/ 
+button: 7777 1850 8000 
+small blind: 3333 1900 8000 
+big blind: 1111 4150 8000 
+4444 2000 6000 
+6666 2000 8000 
+5555 2000 8000 
+8888 1950 8000 
+2222 1850 8000 
+/seat 
+
+-163>
+score of 3333: 4 8000 1900 0
+-164>
+score of 1111: 4 8000 4150 0
+-165>
+score of 4444: 4 6000 2000 0
+-166>
+score of 6666: 4 8000 2000 0
+-167>
+score of 5555: 4 8000 2000 0
+-168>
+score of 8888: 4 8000 1950 0
+-169>
+score of 2222: 4 8000 1850 0
+-170>
+score of 7777: 4 8000 1850 0
+-171>
+player 3333 action blind
+-172>
+player 3333 bet 50 rest 1850
+-173>
+pot num 50 current bet 50 least raise 100
+-174>
+player 1111 action blind
+-175>
+player 1111 bet 100 rest 4050
+-176>
+pot num 150 current bet 100 least raise 100
+-177>
+player 3333:hold/ 
+SPADES J 
+CLUBS 9 
+/hold 
+
+-178>
+player 1111:hold/ 
+HEARTS 2 
+SPADES 4 
+/hold 
+
+-179>
+player 4444:hold/ 
+DIAMONDS 9 
+HEARTS K 
+/hold 
+
+-180>
+player 6666:hold/ 
+CLUBS 2 
+SPADES A 
+/hold 
+
+-181>
+player 5555:hold/ 
+DIAMONDS 2 
+CLUBS A 
+/hold 
+
+-182>
+player 8888:hold/ 
+HEARTS Q 
+DIAMONDS 7 
+/hold 
+
+-183>
+player 2222:hold/ 
+CLUBS 6 
+HEARTS 3 
+/hold 
+
+-184>
+player 7777:hold/ 
+HEARTS 5 
+CLUBS Q 
+/hold 
+
+-185>
+player 4444 action fold
+-186>
+player 4444 time out
+-187>
+player 6666 action fold
+-188>
+player 6666 time out
+-189>
+player 5555 action fold
+-190>
+player 5555 time out
+-191>
+player 8888 action fold
+-192>
+player 8888 time out
+-193>
+player 2222 action fold
+-194>
+player 2222 time out
+-195>
+player 7777 action fold
+-196>
+player 7777 time out
+-197>
+player 3333 action fold
+-198>
+player 3333 time out
+-199>
+player 1111 action fold
+-200>
+player 1111 time out
+-201>
+score of 3333: 4 8000 1850 0
+-202>
+score of 1111: 4 8000 4050 0
+-203>
+score of 4444: 4 6000 2000 0
+-204>
+score of 6666: 4 8000 2000 0
+-205>
+score of 5555: 4 8000 2000 0
+-206>
+score of 8888: 4 8000 1950 0
+-207>
+score of 2222: 4 8000 1850 0
+-208>
+score of 7777: 4 8000 1850 0
+-209>
+game(id=replay) new hand 5 start...
+-210>
+seat/ 
+button: 3333 1850 8000 
+small blind: 1111 4050 8000 
+big blind: 4444 2000 6000 
+6666 2000 8000 
+5555 2000 8000 
+8888 1950 8000 
+2222 1850 8000 
+7777 1850 8000 
+/seat 
+
+-211>
+score of 1111: 5 8000 4050 0
+-212>
+score of 4444: 5 6000 2000 0
+-213>
+score of 6666: 5 8000 2000 0
+-214>
+score of 5555: 5 8000 2000 0
+-215>
+score of 8888: 5 8000 1950 0
+-216>
+score of 2222: 5 8000 1850 0
+-217>
+score of 7777: 5 8000 1850 0
+-218>
+score of 3333: 5 8000 1850 0
+-219>
+player 1111 action blind
+-220>
+player 1111 bet 50 rest 4000
+-221>
+pot num 50 current bet 50 least raise 100
+-222>
+player 4444 action blind
+-223>
+player 4444 bet 100 rest 1900
+-224>
+pot num 150 current bet 100 least raise 100
+-225>
+player 1111:hold/ 
+DIAMONDS 3 
+HEARTS Q 
+/hold 
+
+-226>
+player 4444:hold/ 
+CLUBS J 
+HEARTS A 
+/hold 
+
+-227>
+player 6666:hold/ 
+SPADES Q 
+HEARTS 2 
+/hold 
+
+-228>
+player 5555:hold/ 
+CLUBS 4 
+DIAMONDS 5 
+/hold 
+
+-229>
+player 8888:hold/ 
+HEARTS K 
+DIAMONDS 10 
+/hold 
+
+-230>
+player 2222:hold/ 
+DIAMONDS 2 
+SPADES 5 
+/hold 
+
+-231>
+player 7777:hold/ 
+CLUBS 7 
+SPADES 6 
+/hold 
+
+-232>
+player 3333:hold/ 
+HEARTS 7 
+HEARTS 9 
+/hold 
+
+-233>
+player 6666 action fold
+-234>
+player 6666 time out
+-235>
+player 5555 action fold
+-236>
+player 5555 time out
+-237>
+player 8888 action fold
+-238>
+player 8888 time out
+-239>
+player 2222 action fold
+-240>
+player 2222 time out
+-241>
+player 7777 action fold
+-242>
+player 7777 time out
+-243>
+player 3333 action fold
+-244>
+player 3333 time out
+-245>
+player 1111 action fold
+-246>
+player 1111 time out
+-247>
+player 4444 action fold
+-248>
+player 4444 time out
+-249>
+score of 1111: 5 8000 4000 0
+-250>
+score of 4444: 5 6000 1900 0
+-251>
+score of 6666: 5 8000 2000 0
+-252>
+score of 5555: 5 8000 2000 0
+-253>
+score of 8888: 5 8000 1950 0
+-254>
+score of 2222: 5 8000 1850 0
+-255>
+score of 7777: 5 8000 1850 0
+-256>
+score of 3333: 5 8000 1850 0
+-257>
+game(id=replay) new hand 6 start...
+-258>
+seat/ 
+button: 1111 4000 8000 
+small blind: 4444 1900 6000 
+big blind: 6666 2000 8000 
+5555 2000 8000 
+8888 1950 8000 
+2222 1850 8000 
+7777 1850 8000 
+3333 1850 8000 
+/seat 
+
+-259>
+score of 4444: 6 6000 1900 0
+-260>
+score of 6666: 6 8000 2000 0
+-261>
+score of 5555: 6 8000 2000 0
+-262>
+score of 8888: 6 8000 1950 0
+-263>
+score of 2222: 6 8000 1850 0
+-264>
+score of 7777: 6 8000 1850 0
+-265>
+score of 3333: 6 8000 1850 0
+-266>
+score of 1111: 6 8000 4000 0
+-267>
+player 4444 action blind
+-268>
+player 4444 bet 50 rest 1850
+-269>
+pot num 50 current bet 50 least raise 100
+-270>
+player 6666 action blind
+-271>
+player 6666 bet 100 rest 1900
+-272>
+pot num 150 current bet 100 least raise 100
+-273>
+player 4444:hold/ 
+HEARTS 9 
+CLUBS K 
+/hold 
+
+-274>
+player 6666:hold/ 
+DIAMONDS 3 
+HEARTS J 
+/hold 
+
+-275>
+player 5555:hold/ 
+SPADES 9 
+HEARTS Q 
+/hold 
+
+-276>
+player 8888:hold/ 
+HEARTS 10 
+SPADES 5 
+/hold 
+
+-277>
+player 2222:hold/ 
+SPADES Q 
+CLUBS 6 
+/hold 
+
+-278>
+player 7777:hold/ 
+CLUBS 3 
+HEARTS K 
+/hold 
+
+-279>
+player 3333:hold/ 
+SPADES 7 
+CLUBS A 
+/hold 
+
+-280>
+player 1111:hold/ 
+CLUBS 4 
+CLUBS J 
+/hold 
+
+-281>
+player 5555 action fold
+-282>
+player 5555 time out
+-283>
+player 8888 action fold
+-284>
+player 8888 time out
+-285>
+player 2222 action fold
+-286>
+player 2222 time out
+-287>
+player 7777 action fold
+-288>
+player 7777 time out
+-289>
+player 3333 action fold
+-290>
+player 3333 time out
+-291>
+player 1111 action fold
+-292>
+player 1111 time out
+-293>
+player 4444 action fold
+-294>
+player 4444 time out
+-295>
+player 6666 action fold
+-296>
+player 6666 time out
+-297>
+score of 4444: 6 6000 1850 0
+-298>
+score of 6666: 6 8000 1900 0
+-299>
+score of 5555: 6 8000 2000 0
+-300>
+score of 8888: 6 8000 1950 0
+-301>
+score of 2222: 6 8000 1850 0
+-302>
+score of 7777: 6 8000 1850 0
+-303>
+score of 3333: 6 8000 1850 0
+-304>
+score of 1111: 6 8000 4000 0
+-305>
+game(id=replay) new hand 7 start...
+-306>
+seat/ 
+button: 4444 1850 6000 
+small blind: 6666 1900 8000 
+big blind: 5555 2000 8000 
+8888 1950 8000 
+2222 1850 8000 
+7777 1850 8000 
+3333 1850 8000 
+1111 4000 8000 
+/seat 
+
+-307>
+score of 6666: 7 8000 1900 0
+-308>
+score of 5555: 7 8000 2000 0
+-309>
+score of 8888: 7 8000 1950 0
+-310>
+score of 2222: 7 8000 1850 0
+-311>
+score of 7777: 7 8000 1850 0
+-312>
+score of 3333: 7 8000 1850 0
+-313>
+score of 1111: 7 8000 4000 0
+-314>
+score of 4444: 7 6000 1850 0
+-315>
+player 6666 action blind
+-316>
+player 6666 bet 50 rest 1850
+-317>
+pot num 50 current bet 50 least raise 100
+-318>
+player 5555 action blind
+-319>
+player 5555 bet 100 rest 1900
+-320>
+pot num 150 current bet 100 least raise 100
+-321>
+player 6666:hold/ 
+CLUBS 9 
+SPADES 7 
+/hold 
+
+-322>
+player 5555:hold/ 
+CLUBS J 
+HEARTS J 
+/hold 
+
+-323>
+player 8888:hold/ 
+CLUBS 4 
+DIAMONDS 7 
+/hold 
+
+-324>
+player 2222:hold/ 
+DIAMONDS 9 
+DIAMONDS 8 
+/hold 
+
+-325>
+player 7777:hold/ 
+SPADES J 
+CLUBS 8 
+/hold 
+
+-326>
+player 3333:hold/ 
+SPADES K 
+SPADES 8 
+/hold 
+
+-327>
+player 1111:hold/ 
+SPADES A 
+HEARTS 5 
+/hold 
+
+-328>
+player 4444:hold/ 
+SPADES 6 
+HEARTS 6 
+/hold 
+
+-329>
+player 8888 action fold
+-330>
+player 8888 time out
+-331>
+player 2222 action fold
+-332>
+player 2222 time out
+-333>
+player 7777 action fold
+-334>
+player 7777 time out
+-335>
+player 3333 action fold
+-336>
+player 3333 time out
+-337>
+player 1111 action fold
+-338>
+player 1111 time out
+-339>
+player 4444 action fold
+-340>
+player 4444 time out
+-341>
+player 6666 action fold
+-342>
+player 6666 time out
+-343>
+player 5555 action fold
+-344>
+player 5555 time out
+-345>
+score of 6666: 7 8000 1850 0
+-346>
+score of 5555: 7 8000 1900 0
+-347>
+score of 8888: 7 8000 1950 0
+-348>
+score of 2222: 7 8000 1850 0
+-349>
+score of 7777: 7 8000 1850 0
+-350>
+score of 3333: 7 8000 1850 0
+-351>
+score of 1111: 7 8000 4000 0
+-352>
+score of 4444: 7 6000 1850 0
+-353>
+game(id=replay) new hand 8 start...
+-354>
+seat/ 
+button: 6666 1850 8000 
+small blind: 5555 1900 8000 
+big blind: 8888 1950 8000 
+2222 1850 8000 
+7777 1850 8000 
+3333 1850 8000 
+1111 4000 8000 
+4444 1850 6000 
+/seat 
+
+-355>
+score of 5555: 8 8000 1900 0
+-356>
+score of 8888: 8 8000 1950 0
+-357>
+score of 2222: 8 8000 1850 0
+-358>
+score of 7777: 8 8000 1850 0
+-359>
+score of 3333: 8 8000 1850 0
+-360>
+score of 1111: 8 8000 4000 0
+-361>
+score of 4444: 8 6000 1850 0
+-362>
+score of 6666: 8 8000 1850 0
+-363>
+player 5555 action blind
+-364>
+player 5555 bet 50 rest 1850
+-365>
+pot num 50 current bet 50 least raise 100
+-366>
+player 8888 action blind
+-367>
+player 8888 bet 100 rest 1850
+-368>
+pot num 150 current bet 100 least raise 100
+-369>
+player 5555:hold/ 
+CLUBS 4 
+DIAMONDS 3 
+/hold 
+
+-370>
+player 8888:hold/ 
+CLUBS 9 
+SPADES Q 
+/hold 
+
+-371>
+player 2222:hold/ 
+SPADES 8 
+DIAMONDS J 
+/hold 
+
+-372>
+player 7777:hold/ 
+DIAMONDS A 
+SPADES 4 
+/hold 
+
+-373>
+player 3333:hold/ 
+CLUBS Q 
+SPADES K 
+/hold 
+
+-374>
+player 1111:hold/ 
+CLUBS 7 
+HEARTS 3 
+/hold 
+
+-375>
+player 4444:hold/ 
+CLUBS 6 
+HEARTS 4 
+/hold 
+
+-376>
+player 6666:hold/ 
+CLUBS 5 
+DIAMONDS 6 
+/hold 
+
+-377>
+player 2222 action fold
+-378>
+player 2222 time out
+-379>
+player 7777 action fold
+-380>
+player 7777 time out
+-381>
+player 3333 action fold
+-382>
+player 3333 time out
+-383>
+player 1111 action fold
+-384>
+player 1111 time out
+-385>
+player 4444 action fold
+-386>
+player 4444 time out
+-387>
+player 6666 action fold
+-388>
+player 6666 time out
+-389>
+player 5555 action fold
+-390>
+player 5555 time out
+-391>
+player 8888 action fold
+-392>
+player 8888 time out
+-393>
+score of 5555: 8 8000 1850 0
+-394>
+score of 8888: 8 8000 1850 0
+-395>
+score of 2222: 8 8000 1850 0
+-396>
+score of 7777: 8 8000 1850 0
+-397>
+score of 3333: 8 8000 1850 0
+-398>
+score of 1111: 8 8000 4000 0
+-399>
+score of 4444: 8 6000 1850 0
+-400>
+score of 6666: 8 8000 1850 0
+-401>
+game(id=replay) new hand 9 start...
+-402>
+seat/ 
+button: 5555 1850 8000 
+small blind: 8888 1850 8000 
+big blind: 2222 1850 8000 
+7777 1850 8000 
+3333 1850 8000 
+1111 4000 8000 
+4444 1850 6000 
+6666 1850 8000 
+/seat 
+
+-403>
+score of 8888: 9 8000 1850 0
+-404>
+score of 2222: 9 8000 1850 0
+-405>
+score of 7777: 9 8000 1850 0
+-406>
+score of 3333: 9 8000 1850 0
+-407>
+score of 1111: 9 8000 4000 0
+-408>
+score of 4444: 9 6000 1850 0
+-409>
+score of 6666: 9 8000 1850 0
+-410>
+score of 5555: 9 8000 1850 0
+-411>
+player 8888 action blind
+-412>
+player 8888 bet 50 rest 1800
+-413>
+pot num 50 current bet 50 least raise 100
+-414>
+player 2222 action blind
+-415>
+player 2222 bet 100 rest 1750
+-416>
+pot num 150 current bet 100 least raise 100
+-417>
+player 8888:hold/ 
+DIAMONDS 10 
+DIAMONDS K 
+/hold 
+
+-418>
+player 2222:hold/ 
+CLUBS 9 
+CLUBS Q 
+/hold 
+
+-419>
+player 7777:hold/ 
+DIAMONDS A 
+HEARTS 7 
+/hold 
+
+-420>
+player 3333:hold/ 
+HEARTS 6 
+HEARTS K 
+/hold 
+
+-421>
+player 1111:hold/ 
+HEARTS 4 
+SPADES 9 
+/hold 
+
+-422>
+player 4444:hold/ 
+CLUBS 8 
+SPADES 10 
+/hold 
+
+-423>
+player 6666:hold/ 
+CLUBS 3 
+DIAMONDS 8 
+/hold 
+
+-424>
+player 5555:hold/ 
+CLUBS 7 
+DIAMONDS 7 
+/hold 
+
+-425>
+player 7777 action fold
+-426>
+player 7777 time out
+-427>
+player 3333 action fold
+-428>
+player 3333 time out
+-429>
+player 1111 action fold
+-430>
+player 1111 time out
+-431>
+player 4444 action fold
+-432>
+player 4444 time out
+-433>
+player 6666 action fold
+-434>
+player 6666 time out
+-435>
+player 5555 action fold
+-436>
+player 5555 time out
+-437>
+player 8888 action fold
+-438>
+player 8888 time out
+-439>
+player 2222 action fold
+-440>
+player 2222 time out
+-441>
+score of 8888: 9 8000 1800 0
+-442>
+score of 2222: 9 8000 1750 0
+-443>
+score of 7777: 9 8000 1850 0
+-444>
+score of 3333: 9 8000 1850 0
+-445>
+score of 1111: 9 8000 4000 0
+-446>
+score of 4444: 9 6000 1850 0
+-447>
+score of 6666: 9 8000 1850 0
+-448>
+score of 5555: 9 8000 1850 0
+-449>
+game(id=replay) new hand 10 start...
+-450>
+seat/ 
+button: 8888 1800 8000 
+small blind: 2222 1750 8000 
+big blind: 7777 1850 8000 
+3333 1850 8000 
+1111 4000 8000 
+4444 1850 6000 
+6666 1850 8000 
+5555 1850 8000 
+/seat 
+
+-451>
+score of 2222: 10 8000 1750 0
+-452>
+score of 7777: 10 8000 1850 0
+-453>
+score of 3333: 10 8000 1850 0
+-454>
+score of 1111: 10 8000 4000 0
+-455>
+score of 4444: 10 6000 1850 0
+-456>
+score of 6666: 10 8000 1850 0
+-457>
+score of 5555: 10 8000 1850 0
+-458>
+score of 8888: 10 8000 1800 0
+-459>
+player 2222 action blind
+-460>
+player 2222 bet 50 rest 1700
+-461>
+pot num 50 current bet 50 least raise 100
+-462>
+player 7777 action blind
+-463>
+player 7777 bet 100 rest 1750
+-464>
+pot num 150 current bet 100 least raise 100
+-465>
+player 2222:hold/ 
+SPADES 4 
+SPADES 8 
+/hold 
+
+-466>
+player 7777:hold/ 
+DIAMONDS 6 
+SPADES 7 
+/hold 
+
+-467>
+player 3333:hold/ 
+CLUBS 7 
+HEARTS 6 
+/hold 
+
+-468>
+player 1111:hold/ 
+DIAMONDS 10 
+SPADES 5 
+/hold 
+
+-469>
+player 4444:hold/ 
+DIAMONDS 3 
+CLUBS 5 
+/hold 
+
+-470>
+player 6666:hold/ 
+SPADES K 
+HEARTS J 
+/hold 
+
+-471>
+player 5555:hold/ 
+HEARTS 9 
+HEARTS Q 
+/hold 
+
+-472>
+player 8888:hold/ 
+HEARTS 4 
+CLUBS Q 
+/hold 
+
+-473>
+player 3333 action fold
+-474>
+player 3333 off line
+-475>
+player 1111 action fold
+-476>
+player 1111 time out
+-477>
+player 4444 action fold
+-478>
+player 4444 time out
+-479>
+player 6666 action fold
+-480>
+player 6666 off line
+-481>
+player 5555 action fold
+-482>
+player 5555 off line
+-483>
+player 8888 action fold
+-484>
+player 8888 off line
+-485>
+player 2222 action fold
+-486>
+player 2222 off line
+-487>
+player 7777 action fold
+-488>
+player 7777 off line
+-489>
+score of 2222: 10 8000 1700 0
+-490>
+score of 7777: 10 8000 1750 0
+-491>
+score of 3333: 10 8000 1850 0
+-492>
+score of 1111: 10 8000 4000 0
+-493>
+score of 4444: 10 6000 1850 0
+-494>
+score of 6666: 10 8000 1850 0
+-495>
+score of 5555: 10 8000 1850 0
+-496>
+score of 8888: 10 8000 1800 0
+-497>
+game(id=replay) new hand 11 start...
+-498>
+seat/ 
+button: 1111 4000 8000 
+small blind: 4444 1850 6000 
+/seat 
+
+-499>
+score of 4444: 11 6000 1850 0
+-500>
+score of 1111: 11 8000 4000 0
+-501>
+player 4444 action blind
+-502>
+player 4444 bet 50 rest 1800
+-503>
+pot num 50 current bet 50 least raise 100
+-504>
+player 4444:hold/ 
+DIAMONDS 5 
+HEARTS J 
+/hold 
+
+-505>
+player 1111:hold/ 
+HEARTS 2 
+HEARTS 8 
+/hold 
+
+-506>
+player 1111 action fold
+-507>
+player 1111 off line
+-508>
+player 4444 action fold
+-509>
+player 4444 off line
+-510>
+score of 4444: 11 6000 1800 0
+-511>
+score of 1111: 11 8000 4000 0
+-512>
+score of 1111: 11 0 0 1
+-513>
+score of 2222: 10 0 0 3
+-514>
+score of 3333: 10 0 0 3
+-515>
+score of 4444: 11 0 0 1
+-516>
+score of 5555: 10 0 0 3
+-517>
+score of 6666: 10 0 0 3
+-518>
+score of 7777: 10 0 0 3
+-519>
+score of 8888: 10 0 0 3
+-520>
+game over
