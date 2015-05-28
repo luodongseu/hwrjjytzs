@@ -1,6 +1,9 @@
 package com.twomonk.hw.game;
 
+import java.io.BufferedWriter;
 import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
@@ -229,12 +232,12 @@ public class game {
 	 */
 	void getInquire(String info) {
 		hasAllIn = info.contains("all_in") ? true : false;
-		System.out.println("s" + System.currentTimeMillis());
+		System.out.println("suanfa begin time: " + System.currentTimeMillis());
 		String infos[] = info.split(eol);
 		/** player number **/
 		int numOfPlayer = infos.length - 3;
 		/** all pots in the game **/
-		AllPot = Integer.valueOf(infos[numOfPlayer + 1].split(":\\s+")[1]);
+		AllPot = Integer.valueOf(infos[numOfPlayer + 1].split(": ")[1]);
 		/** get all duishous **/
 		for (int i = 1; i < numOfPlayer + 1; i++) {
 			Duishou ds = new Duishou(infos[i]);
@@ -256,7 +259,7 @@ public class game {
 		cho += eol;
 		out.write(cho);
 		out.flush();
-		System.out.println("act" + System.currentTimeMillis());
+		System.out.println("send success : " + System.currentTimeMillis());
 	}
 
 	/**
@@ -345,18 +348,21 @@ public class game {
 		/** win pot player **/
 		Map<String, Integer> pots = new HashMap<String, Integer>();
 
-		{
-			int num = infos.length;
-			/** Player number **/
-			int numOfPlayer = num - 2;
-			for (int i = 0; i < numOfPlayer; i++) {
+		int num = infos.length;
+		/** Player number **/
+		int numOfPlayer = num - 2;
+		for (int i = 0; i < numOfPlayer; i++) {
+			try {
 				/***************************************************************************************************************************/
+				// System.out.println("POT_WIN:" + infos[i + 1]);
+				/** only use (: ) to// split **/
 				String[] pot = infos[i + 1].split(": ");
 				pots.put(pot[0], Integer.valueOf(pot[1]));
 				/***************************************************************************************************************************/
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 		}
-		// return pots;
 	}
 
 	/**
@@ -369,6 +375,7 @@ public class game {
 		args = new String[] { "127.0.0.1", "1234", "127.0.0.1", "2222", "4444" };
 		game gam = new game();
 		gam.init(args);
+
 	}
 
 	/**
@@ -382,109 +389,130 @@ public class game {
 			try {
 				DataInputStream in = new DataInputStream(
 						socket.getInputStream());
+				/** true// for// append **/
+				FileWriter fileWriter = new FileWriter("MYLOG.txt", true);
+				BufferedWriter bufferWritter = new BufferedWriter(fileWriter);
 				while (true && running) {
-
 					byte[] buffer;
 					buffer = new byte[in.available()];
-					// System.out.println("in....");
 					String info = null;
 					if (buffer.length != 0) {
 						in.read(buffer);
 						info = new String(buffer);
-						System.out.println("info:" + info);
+						bufferWritter.write(info + "\r\n****************"
+								+ "************************\r\n");
+						bufferWritter.flush();
 					} else {
 						continue;
 					}
 					try {
-						if (getSingleInfo(info, "seat/") != null) {
-							/** Seat info **/
-							current = S_SEAT;
-							getSeatInfo(getSingleInfo(info, "seat/"));
-						}
-						if (getSingleInfo(info, "blind/") != null) {
-							/** Blind info **/
-							current = S_BLIND;
-							getBlind(getSingleInfo(info, "blind/"));
-						}
-						if (getSingleInfo(info, "hold/") != null) {
-							/** My HandCards info **/
-							current = S_HOLDCARDS;
-							getHandCards(getSingleInfo(info, "hold/"));
-						}
-						if (getSingleInfo(info, "inquire/") != null) {
-							/** Server Inquire my action info **/
-							switch (current) {
-							case S_FLOPCARDS:
-								current = S_INQUIRE_A_FLOP;
-								/** strategy 1 **/
-								// doAction("all_in");
-								getInquire(getSingleInfo(info, "inquire/"));
-								mAction.FPaiAction(AllCards, mBET, AllPot,
-										hasAllIn);
-								break;
-							case S_HOLDCARDS:
-								current = S_INQUIRE_A_HOLD;
-								/** strategy 2 **/
-								// doAction("all_in");
-								getInquire(getSingleInfo(info, "inquire/"));
-								mAction.FristAction(AllCards, mBET, AllPot,
-										hasAllIn);
-								break;
-							case S_TRUNCARD:
-								current = S_INQUIRE_A_TRUN;
-								/** strategy 3 **/
-								// doAction("all_in");
-								getInquire(getSingleInfo(info, "inquire/"));
-								mAction.ZPaiAction(AllCards, mBET, AllPot,
-										hasAllIn);
-								break;
-							case S_RIVERCARD:
-								current = S_INQUIRE_A_RIVER;
-								/** strategy 4 **/
-								// doAction("all_in");
-								getInquire(getSingleInfo(info, "inquire/"));
-								mAction.HPaiAction(AllCards, mBET, AllPot,
-										hasAllIn);
-								break;
-							default:
-								break;
-							}
-						}
-						if (getSingleInfo(info, "flop/") != null) {
-							/** 3 Common cards info **/
-							current = S_FLOPCARDS;
-							getFlop(getSingleInfo(info, "flop/"));
-						}
-						if (getSingleInfo(info, "turn/") != null) {
-							/** 1 Turn card info **/
-							current = S_TRUNCARD;
-							getTurn(getSingleInfo(info, "turn/"));
-						}
-						if (getSingleInfo(info, "river/") != null) {
-							/** 1 River card info **/
-							current = S_RIVERCARD;
-							getRiver(getSingleInfo(info, "river/"));
-						}
+						System.out.println("info..............................................\n"+info);
+						while (!info.equals("")) {
+							if (info.startsWith("seat/")) {
+								System.out.println("seat..............................................\n"+ info);
+								/** Seat info **/
+								current = S_SEAT;
+								getSeatInfo(getSingleInfo(info, "seat"));
+								info = info.replaceAll("seat/(?s).*?/seat \n","");
 
-						if (getSingleInfo(info, "showdown/") != null) {
-							/** Show all players' cards info **/
-							current = S_SHOWDOWN;
-							showCards(getSingleInfo(info, "showdown/"));
-						}
-						if (getSingleInfo(info, "pot-win/") != null) {
-							/** Show pot giving info **/
-							current = S_SHOWPOT;
-							getPotWin(getSingleInfo(info, "pot-win/"));
-							resetGame();
-						} else if (getSingleInfo(info, "game-over") != null) {
-							/** Game Over reset game **/
-							current = S_GAMEOVER;
-							gameOver();
+							}
+							if (info.startsWith("blind/")) {
+								System.out.println("blind.............................................\n"+ info);
+								/** Blind info **/
+								current = S_BLIND;
+								getBlind(getSingleInfo(info, "blind"));
+								info = info.replaceAll("blind/(?s).*?/blind \n", "");
+
+							}
+							if (info.startsWith("hold/")) {
+								System.out.println("hold..............................................\n"+ info);
+								/** My HandCards info **/
+								current = S_HOLDCARDS;
+								getHandCards(getSingleInfo(info, "hold"));
+								info = info.replaceAll("hold/(?s).*?/hold \n","");
+
+							}
+							if (info.startsWith("inquire/")) {
+								System.out.println("inquire..............................................\n"+ info);
+								/** Server Inquire my action info **/
+								if (AllCards.size() == 5) {
+									/** strategy 1 **/
+									getInquire(getSingleInfo(info, "inquire"));
+									doAction("fold");
+								//	mAction.FPaiAction(AllCards, mBET, AllPot,hasAllIn);
+								} else if (AllCards.size() == 2) {
+									/** strategy 2 **/
+									getInquire(getSingleInfo(info, "inquire"));
+									doAction("fold");
+								//	mAction.FristAction(AllCards, mBET, AllPot,hasAllIn);
+								} else if (AllCards.size() == 6) {
+									/** strategy 3 **/
+									getInquire(getSingleInfo(info, "inquire"));
+									doAction("fold");
+								//	mAction.ZPaiAction(AllCards, mBET, AllPot,hasAllIn);
+								} else if (AllCards.size() == 7) {
+									/** strategy 4 **/
+									getInquire(getSingleInfo(info, "inquire"));
+									doAction("fold");
+								//	mAction.HPaiAction(AllCards, mBET, AllPot,	hasAllIn);
+								}
+								info = info.replaceAll("inquire/(?s).*?/inquire \n", "");
+
+							}
+							if (info.startsWith("flop/")) {
+								System.out.println("flop..............................................\n"+ info);
+								/** 3 Common cards info **/
+								current = S_FLOPCARDS;
+								getFlop(getSingleInfo(info, "flop"));
+								info = info.replaceAll("flop/(?s).*?/flop \n","");
+
+							}
+							if (info.startsWith("turn/")) {
+								System.out.println("turn..............................................\n"+ info);
+								/** 1 Turn card info **/
+								current = S_TRUNCARD;
+								getTurn(getSingleInfo(info, "turn"));
+								info = info.replaceAll("turn/(?s).*?/turn \n","");
+
+							}
+							if (info.startsWith("river/")) {
+								System.out.println("river..............................................\n"+ info);
+								/** 1 River card info **/
+								current = S_RIVERCARD;
+								getRiver(getSingleInfo(info, "river"));
+								info = info.replaceAll("river/(?s).*?/river \n", "");
+
+							}
+							if (info.startsWith("pot-win/")) {
+								System.out.println("pot-win..............................................\n"+ info);
+								/** Show pot giving info **/
+								current = S_SHOWPOT;
+								getPotWin(getSingleInfo(info, "pot-win"));
+								info = info.replaceAll("pot-win/(?s).*?/pot-win \n", "");
+
+							}
+							if (info.startsWith("showdown/")) {
+								System.out.println("showdown..............................................\n"+ info);
+								/** Show all players' cards info **/
+								current = S_SHOWDOWN;
+								showCards(getSingleInfo(info, "showdown"));
+								info = info.replaceAll("showdown/(?s).*?/showdown \n", "");
+
+							}
+							if (info.startsWith("game-over")) {
+								System.out.println("game-over..............................................\n"+ info);
+								/** Game Over reset game **/
+								current = S_GAMEOVER;
+								gameOver();
+								info = info.replaceAll("game-over \n", "");
+							}
 						}
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
 				}
+				/** close our log bufferWritter **/
+				bufferWritter.close();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -927,7 +955,6 @@ class Judge {
 	}
 
 	public void Short(Card[] list) {
-		System.out.println("list:" + list.length);
 		int tag = 0;
 		Card temp;
 		for (int i = list.length - 1; i > 0; i--) {
@@ -945,7 +972,7 @@ class Judge {
 		}
 
 		for (Card c : list) {
-			System.out.println("card" + c.point);
+			System.out.println("card: " + c.point);
 		}
 	}
 

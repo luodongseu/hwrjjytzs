@@ -80,6 +80,55 @@ public class Server {
 			// // TODO Auto-generated catch block
 			// e.printStackTrace();
 			// }
+			/**
+			 * inquire/ 4444 1950 8000 50 fold 7777 2000 8000 0 fold 6666 0 8000
+			 * 2000 all_in 1111 0 8000 2000 all_in 3333 1800 8000 200 call 5555
+			 * 1800 8000 200 raise 2222 1900 8000 100 call 8888 1900 8000 100
+			 * blind total pot: 4650 /inquire
+			 * 
+			 * 
+			 * turn/ 
+CLUBS 9 
+/turn 
+river/ 
+HEARTS 8 
+/river 
+showdown/ 
+common/ 
+HEARTS 9 
+HEARTS 3 
+HEARTS Q 
+CLUBS 9 
+HEARTS 8 
+/common 
+2: 2222 CLUBS 7 HEARTS 5 FLUSH 
+3: 5555 SPADES 9 SPADES K THREE_OF_A_KIND 
+5: 3333 SPADES J CLUBS 3 TWO_PAIR 
+4: 1111 DIAMONDS 9 CLUBS 10 THREE_OF_A_KIND 
+1: 6666 CLUBS 8 HEARTS A FLUSH 
+/showdown 
+pot-win/ 
+6666: 10150 
+/pot-win 
+seat/ 
+button: 4444 1950 8000 
+small blind: 8888 1900 8000 
+big blind: 2222 2000 6000 
+5555 2000 6000 
+3333 2000 6000 
+1111 2000 6000 
+6666 10150 8000 
+7777 2000 8000 
+/seat 
+blind/ 
+8888: 50 
+2222: 100 
+/blind 
+hold/ 
+CLUBS K 
+HEARTS 10 
+/hold 
+			 */
 			System.out.println("22222222222222222222222222222222222222");
 			bw.write("blind/ \n7777: 50 \n3333: 100 \n/blind \n");
 			bw.flush();
@@ -100,7 +149,7 @@ public class Server {
 			// }
 
 			System.out.println("4444444444444444444444444444444444444444444");
-			bw.write("inquire/ \n2222 1900 8000 100 blind \n1111 1950 8000 50 blind \ntotal pot: 150 \n/inquire");
+			bw.write("inquire/ \n2222 1900 8000 100 blind \n1111 1950 8000 50 blind \ntotal pot: 150 \n/inquire \n");
 			bw.flush();
 			time1 = System.currentTimeMillis();
 			System.out.println("time0:" + time1);
@@ -199,12 +248,12 @@ public class Server {
 					+ " \n4: 6666 HEARTS 10 DIAMONDS A ONE_PAIR"
 					+ " \n/showdown \n");
 			bw.flush();
-//			try {
-//				Thread.sleep(1000);
-//			} catch (InterruptedException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
+			// try {
+			// Thread.sleep(1000);
+			// } catch (InterruptedException e) {
+			// // TODO Auto-generated catch block
+			// e.printStackTrace();
+			// }
 
 			// seat/
 			// button: 4444 2000 8000
@@ -233,9 +282,7 @@ public class Server {
 			// /inquire
 
 			System.out.println("1234456867978609805673465235236");
-			bw.write("pot-win/"
-					+ " \n8888: 14000 \n8888: 14000 \n8888: 14000 \n8888: 14000 \n8888: 14000"
-					+ " \n/pot-win \n");
+			bw.write("pot-win/ \n8888: 14000 \n8888: 14000 \n8888: 14000 \n8888: 14000 \n8888: 14000 \n/pot-win \n");
 			bw.flush();
 			try {
 				Thread.sleep(1000);
